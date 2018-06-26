@@ -1,2 +1,2 @@
 console.log('dwdq');
-export default 24;
+export default 105;
