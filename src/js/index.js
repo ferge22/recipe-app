@@ -1,6 +1,6 @@
 import Search from './models/Search';
 import * as searchView from './views/searchView' //searchView is an object witch has all exported variables
-import { elements } from './views/base';
+import { elements, renderLoader, clearLoader } from './views/base';
 
 //Global state of our app (current moment -state, what we have)
 /*
@@ -24,6 +24,7 @@ const controlSearch = async() => {
         // 3) Prepare UI for results
         searchView.clearInput();
         searchView.clearResults();
+        renderLoader(elements.searchRes);
 
         // 4) Search for recipes
         await state.search.getResults();
@@ -31,6 +32,7 @@ const controlSearch = async() => {
 
         // 5) render results on UI
         // console.log(state.search.result); // result array
+        clearLoader();
         searchView.renderResults(state.search.result);
 
     }

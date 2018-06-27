@@ -39,7 +39,7 @@ const limitRecipeTitle = (title, limit = 17) => {
     return title;
 }
 
-//only 1 recipe
+//for only 1 recipe
 const renderRecipe = recipe => {
     const markup = `
         <li>
@@ -57,7 +57,7 @@ const renderRecipe = recipe => {
     elements.searchResList.insertAdjacentHTML('beforeend', markup);
 };
 
-//passing all recipes in recipes argument
+//for all recipes from one recipe. passing all recipes in recipes argument
 export const renderResults = recipes => {
     // recipes.forEach(renderRecipe);
 
