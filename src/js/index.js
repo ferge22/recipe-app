@@ -38,9 +38,10 @@ const controlSearch = async() => {
         // console.log(state.search.result); // result array
         clearLoader();
         searchView.renderResults(state.search.result);
-        
+
         }catch(error){
-            alert('Error processing recipe!')
+            alert('Error processing recipe!');
+            clearLoader();
         }
 
     }
