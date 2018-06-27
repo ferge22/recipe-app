@@ -57,11 +57,45 @@ const renderRecipe = recipe => {
     elements.searchResList.insertAdjacentHTML('beforeend', markup);
 };
 
-//for all recipes from one recipe. passing all recipes in recipes argument
-export const renderResults = recipes => {
-    // recipes.forEach(renderRecipe);
+//Only button markup
+//type 'prev' or 'next'
+const createButton = (page, type) => `
+    <button class="btn-inline results__btn--${type}" data-goto=${type === 'prev' ? page-1 : page+1}>
+        <svg class="search__icon">
+            <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
+        </svg>
+        <span>${type === 'prev' ? page-1 : page+1}</span>
+    </button>
+`;
 
-    for (const allrecipes of recipes){
+
+
+const renderButtons = (page, numResults, resPerPage) => {
+    const pages = Math.ceil(numResults/resPerPage);
+
+    let button;
+    if(page === 1 && page > 1){
+        //Pirst page - Only button got o next
+        button = createButton(page, 'next');
+    } else if(page < pages){
+        //Both buttons
+        button = `
+            ${createButton(page, 'next')};
+            ${createButton(page, 'prev')};
+        `
+    } else if(page === pages && page > 1){
+        //Last page - Only pervous page
+        button = createButton(page, 'prev');
+    }
+};
+
+//for all recipes from one recipe. passing all recipes in recipes argument
+export const renderResults = (recipes, page = 1, resPerPage = 10) => {
+    const start = (page - 1) * resPerPage;
+    const end = page * resPerPage;
+
+    // recipes.forEach(renderRecipe);
+    for (const allrecipes of recipes.slice(start, end)){
         renderRecipe(allrecipes);
     };
           
