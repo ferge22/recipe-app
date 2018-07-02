@@ -12,7 +12,6 @@ import { elements, renderLoader, clearLoader } from './views/base';
 */
 const state = {};
 
-
 /*----SEARCH CONTROLLER----*/
 
 const controlSearch = async() => {
@@ -45,6 +44,8 @@ const controlSearch = async() => {
             clearLoader();
         }
 
+        console.log(state);
+
     }
 
 };
@@ -70,9 +71,9 @@ elements.searchResPages.addEventListener('click', e => {
 });
 
 /*----RECIPE CONTROLLER----*/
-// const r = new Recipe(47746);
-// r.getRecipe();
-// console.log(r);
+const r = new Recipe(47746);
+r.getRecipe();
+console.log(r);
 
 const controlRecipe = async() => {
     const id = window.location.hash.replace('#', '');

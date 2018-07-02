@@ -48,8 +48,32 @@ export default class Search {
             ingredient = ingredient.replace(/ *\([^)]*\) */g, ' ');
 
             // 3) Parse ingredients into count, unit and ingredient
+            const arrIng = ingredient.split('');
+            //example return the position of index where el2=> turns out to be tru example unitsShort tbsp index in array;
+            //jeigu atitiks salyga po el2 t,y true, grazins indexa to zodziu kuris yra units short tam arrIng
+            const unitIndex = arrIng.findIndex(el2 => unitsShort.includes(el2));
 
-            return ingredient;
+            let objIng;
+            if (unitIndex > -1){
+                //There is a unit
+            }else if(parseInt(arrIng[0], 10)) {
+                //There is No unit but 1st element is number
+                objIng = {
+                    count: parseInt(arrIng[0], 10),
+                    unit: '',
+                    ingredient: arrIng.slice(1).join('')
+                }
+            }else if(unitIndex === -1){
+                //There is No unit and No number is 1st position
+
+                objIng = {
+                    count: 1,
+                    unit: '',
+                    ingredient
+                }
+            }
+
+            return objIng;
         });
         this.ingredients = newIngredients;
     }
