@@ -1,6 +1,7 @@
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 import * as searchView from './views/searchView' //searchView is an object witch has all exported variables
+import * as recipeView from './views/recipeView'
 import { elements, renderLoader, clearLoader } from './views/base';
 
 //Global state of our app (current moment -state, what we have)
@@ -78,6 +79,7 @@ const controlRecipe = async() => {
         try{
             //Get recipe data and parse Ingredients
             await state.recipe.getRecipe();
+            console.log(state.recipe.ingredients);
             state.recipe.parseIngredients();
 
             // Calculate servings and time
