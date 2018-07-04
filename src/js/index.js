@@ -143,6 +143,12 @@ elements.shopping.addEventListener('click', e => {
     }
 });
 
+/*----Like CONTROLLER----*/
+const likesControler = () => {
+
+
+};
+
 
 //Handling recipe button clicks
 elements.recipe.addEventListener('click', e => {
