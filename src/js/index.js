@@ -3,6 +3,7 @@ import Recipe from './models/Recipe';
 import List from './models/List';
 import * as searchView from './views/searchView' //searchView is an object witch has all exported variables
 import * as recipeView from './views/recipeView'
+import * as searchView from './views/searchView'
 import { elements, renderLoader, clearLoader } from './views/base';
 
 //Global state of our app (current moment -state, what we have)
@@ -104,6 +105,20 @@ const controlRecipe = async() => {
 
 };
 
+/*----List CONTROLLER----*/
+
+const controlList = () => {
+    //Create a new list if there is none
+    if(!state.list) state.list = new List();
+
+    //Add each ingredient to the list
+    for (const el of state.recipe.ingredients) {
+        const item = state.list.addItem(el.count, el.unit, el.ingredient);
+    }
+
+}
+
+
 // window.addEventListener('hashchange', controlRecipe);
 ['hashchange','load'].forEach(event => window.addEventListener(event, controlRecipe));
 
@@ -120,9 +135,14 @@ elements.recipe.addEventListener('click', e => {
         //increase button is clicked
         state.recipe.updateServings('inc');
         recipeView.updateServingsIngredients(state.recipe);
-    };
+    }else if(e.target.matches('.recipe__btn--add, recipe__btn--add *')){
+
+    }
 
     // console.log(state.recipe);
 });
+
+
+
 
 window.l = new List();
