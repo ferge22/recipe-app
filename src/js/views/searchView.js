@@ -17,7 +17,7 @@ export const highlightSelectd = id => {
     for (const el of resultsArr) {
         el.classList.remove('results__link--active');
     }
-    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+    document.querySelector(`.results__link[href="#${id}"]`).classList.add('results__link--active');
 }
 
 /*
@@ -29,7 +29,7 @@ acc 15 / acc + cur.length = 5 / newTitle = ['Pasta'] length is more than 17 and 
 acc 0 / acc + cur.length = 5 / newTitle = ['Pasta']
 */
 
-const limitRecipeTitle = (title, limit = 17) => {
+export const limitRecipeTitle = (title, limit = 17) => {
     const newTitle = [];
     if(title.length > limit){
       /* Split

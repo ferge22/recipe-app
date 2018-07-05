@@ -148,33 +148,36 @@ elements.shopping.addEventListener('click', e => {
 
 //testting
 state.likes = new Likes();
+likesView.toggleLikeMenu(state.likes.getNumLikes());
 /*----Like CONTROLLER----*/
 const controlLike = () => {
     if(!state.likes) state.likes = new Likes();
     const currentID = state.recipe.id;
 
     if(!state.likes.isLiked(currentID)){
-        //Add like to the state
-        const newLike = state.likes.addLike(
-            currentID,
-            state.recipe.title,
-            state.recipe.author,
-            state.recipe.img
-        )
-        //Toggle the like button
-        likesView.toggleLikeBtn(true);
+       // Add like to the state
+       const newLike = state.likes.addLike(
+        currentID,
+        state.recipe.title,
+        state.recipe.author,
+        state.recipe.img
+    );
+    // Toggle the like button
+    likesView.toggleLikeBtn(true);
 
-        //Add like to Ui list
-        console.log(state.likes);
+    // Add like to UI list
+    likesView.renderLike(newLike);
+    
+    // User HAS liked current recipe
     }else{
-        //Remove like from the state
+        // Remove like from the state
         state.likes.deleteLike(currentID);
 
-        //Toggle the like button
+        // Toggle the like button
         likesView.toggleLikeBtn(false);
-
-        //Remove like from Ui list
-        console.log(state.likes);
+  
+        // Remove like from UI list
+        likesView.deleteLike(currentID);
     }
 
     likesView.toggleLikeMenu(state.likes.getNumLikes());
