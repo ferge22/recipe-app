@@ -5,6 +5,7 @@ import Likes from './models/Likes';
 import * as searchView from './views/searchView' //searchView is an object witch has all exported variables
 import * as recipeView from './views/recipeView'
 import * as listView from './views/listView'
+import * as likesView from './views/likesView'
 import { elements, renderLoader, clearLoader } from './views/base';
 
 //Global state of our app (current moment -state, what we have)
