@@ -16,7 +16,6 @@ import { elements, renderLoader, clearLoader } from './views/base';
 - Liked recipes
 */
 const state = {};
-window.state = state;
 
 /*----SEARCH CONTROLLER----*/
 
