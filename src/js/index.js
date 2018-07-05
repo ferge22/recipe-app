@@ -27,7 +27,6 @@ const controlSearch = async() => {
     if(query){
         // 2) New search object and add to state
         let a = state.search = new Search(query); // query:'pizza'
-        console.log(a);
 
         // 3) Prepare UI for results
         searchView.clearInput();
@@ -47,9 +46,6 @@ const controlSearch = async() => {
             alert('Error processing recipe!');
             clearLoader();
         }
-
-        console.log(state);
-
     }
 
 };
@@ -73,7 +69,6 @@ elements.searchResPages.addEventListener('click', e => {
 
 const controlRecipe = async() => {
     const id = window.location.hash.replace('#', '');
-    console.log(id);
 
     if(id){
         //Prepare Ui for changes
@@ -146,9 +141,6 @@ elements.shopping.addEventListener('click', e => {
 });
 
 
-//testting
-state.likes = new Likes();
-likesView.toggleLikeMenu(state.likes.getNumLikes());
 /*----Like CONTROLLER----*/
 const controlLike = () => {
     if(!state.likes) state.likes = new Likes();
@@ -167,7 +159,7 @@ const controlLike = () => {
 
     // Add like to UI list
     likesView.renderLike(newLike);
-    
+
     // User HAS liked current recipe
     }else{
         // Remove like from the state
@@ -184,6 +176,22 @@ const controlLike = () => {
 
 };
 
+//Restore like recipes on page load
+window.addEventListener('load', () => {
+    state.likes = new Likes();
+
+    //Restore likes
+    state.likes.readStorage();
+
+    //Toggle like menu button
+    likesView.toggleLikeMenu(state.likes.getNumLikes());
+
+    //Render the xisting likes
+    for (const like of state.likes.likes) {
+        likesView.renderLike(like);
+    }
+
+});
 
 //Handling recipe button clicks
 elements.recipe.addEventListener('click', e => {
@@ -206,10 +214,4 @@ elements.recipe.addEventListener('click', e => {
         controlLike();
     }
 
-    // console.log(state.recipe);
 });
-
-
-
-
-window.l = new List();
